@@ -441,7 +441,11 @@ def main():
     draw_minis(cv)
     draw_footer(cv)
     here = os.path.dirname(os.path.abspath(__file__))
-    out = os.path.join(here, "out", "entry.png")
+    outdir = os.environ.get("MAKEFUN_OUTPUT_DIR")
+    if outdir:
+        out = os.path.join(outdir, "entry.png")
+    else:
+        out = os.path.join(here, "out", "entry.png")
     n = write_png(out, cv)
     print("wrote %s (%d bytes)" % (out, n))
 
